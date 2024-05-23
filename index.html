@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="giaoDienDS()">Hiển thị danh sách</button>
+<button onclick="giaoDienThem()">Thêm mới sản phẩm</button>
+<div id="disp"> </div>
+</body>
+<script>
+    let danhSachSP = ['Ip15', 'S23', 'Note10'];
+    giaoDienDS();
+
+    function giaoDienDS() {
+        let str = '<h1>Danh Sách Sản Phẩm</h1>';
+        str += `<p>Số lượng sản phẩm: ${danhSachSP.length}</p>`
+        for (let i = 0; i < danhSachSP.length; i++) {
+            str += `<h3>${danhSachSP[i]} <button onclick="sua(${i})">Sửa</button> <button onclick="xoa(${i})">Xóa</button></h3>`
+        }
+        document.getElementById('disp').innerHTML = str;
+    }
+    
+    function giaoDienThem() {
+        let str = '<input id="inp"> <button onclick="them()">Thêm Mới</button>';
+        document.getElementById('disp').innerHTML = str;
+    }
+    
+    function them() {
+        danhSachSP.push(document.getElementById('inp').value);
+        giaoDienDS();
+    }
+
+    function sua(index) {
+        let str = `<input id="inp" value="${danhSachSP[index]}"> <button onclick="luu(${index})">Lưu</button>`;
+        document.getElementById('disp').innerHTML = str;
+    }
+
+    function luu(index) {
+        danhSachSP[index] = document.getElementById('inp').value;
+        giaoDienDS();
+    }
+
+    function xoa(index) {
+        danhSachSP.splice(index, 1);
+        giaoDienDS();
+    }
+
+</script>
+</html>
